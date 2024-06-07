@@ -1,23 +1,25 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
 ---
 
 <Layout title="Home">
     <main>
-        Sup, I'm
+        ’Sup, I’m
         <h1 class="text-7xl font-bold mb-4">Yancheng.</h1>
-        This page is work in progress, as always
+        <p>
+            I'm a teenager living in the Boston area, and I love programming and
+            writing.
+        </p>
+        <br />
+        Check out some of my links below:
+        <br />
+        <ul class="text-blue-500">
+            <li><a href="https://github.com/ItsMeNoobieboy">GitHub</a></li>
+            <li><a href="https://itsmenoobieboy.itch.io/">Itch.io</a></li>
+            <li><a href="https://devpost.com/yzhao">Devpost</a></li>
+        </ul>
     </main>
 </Layout>
 
 <style>
-    main {
-        margin: auto;
-        padding: 1rem;
-        width: 800px;
-        max-width: calc(100% - 2rem);
-        font-size: 20px;
-        line-height: 1.6;
-    }
 </style>
