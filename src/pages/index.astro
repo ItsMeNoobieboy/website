@@ -4,22 +4,63 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Home">
     <main>
-        ’Sup, I’m
+        👋 ’Sup, I’m
         <h1 class="text-7xl font-bold mb-4">Yancheng.</h1>
         <p>
-            I'm a teenager living in the Boston area, and I love programming and
-            writing.
+            Welcome to my website! I'm a teenager living in the Boston area, and
+            I love programming and writing.
         </p>
         <br />
-        Check out some of my links below:
+        <div>
+            <h2 class="text-2xl font-semibold">
+                Check out some of my links below:
+            </h2>
+            <ul class="text-blue-500">
+                <li><a href="https://github.com/ItsMeNoobieboy">GitHub</a></li>
+                <li><a href="https://itsmenoobieboy.itch.io/">Itch.io</a></li>
+                <li><a href="https://devpost.com/yzhao">Devpost</a></li>
+            </ul>
+        </div>
         <br />
-        <ul class="text-blue-500">
-            <li><a href="https://github.com/ItsMeNoobieboy">GitHub</a></li>
-            <li><a href="https://itsmenoobieboy.itch.io/">Itch.io</a></li>
-            <li><a href="https://devpost.com/yzhao">Devpost</a></li>
-        </ul>
+        <div>
+            <h2 class="text-2xl font-semibold">Contact me at:</h2>
+            <ul>
+                <li>
+                    Email: <a
+                        href="mailto:yancheng@duck.com"
+                        class="text-blue-500">yancheng@duck.com</a
+                    >
+                </li>
+                <li>
+                    Discord: <button class="text-blue-500" id="discord"
+                        >itsmenoobieboy</button
+                    > (<span id="discordCopyText">Click to copy</span>)
+                </li>
+                <li>
+                    Hack Clubber? Message me on Slack: <button
+                        class="text-blue-500"
+                        id="slack">@Yancheng</button
+                    > (<span id="slackCopyText">Click to copy</span>)
+                </li>
+            </ul>
+        </div>
     </main>
 </Layout>
 
-<style>
-</style>
+<script>
+    function copyDiscord() {
+        var text = document.getElementById("discord").innerText;
+        navigator.clipboard.writeText(text);
+        document.getElementById("discordCopyText").innerText = "Copied!";
+    }
+    document.getElementById("discord").addEventListener("click", copyDiscord);
+
+    function copySlack() {
+        var text = document.getElementById("slack").innerText;
+        navigator.clipboard.writeText(text);
+        document.getElementById("slackCopyText").innerText = "Copied!";
+    }
+    document.getElementById("slack").addEventListener("click", copySlack);
+</script>
+
+<style></style>
