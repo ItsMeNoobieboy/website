@@ -22,21 +22,13 @@ const { title } = Astro.props;
             <div class="inline p-2 justify-self-start">Yancheng Zhao</div>
             <ul class="flex font-bold m-3">
                 <li>
-                    <a href="/" class="hover:bg-blue-300 p-2 rounded-md m-2"
-                        >Home</a
-                    >
+                    <a href="/">Home</a>
                 </li>
                 <li>
-                    <a
-                        href="/projects"
-                        class="hover:bg-blue-300 p-2 rounded-md m-2">Projects</a
-                    >
+                    <a href="/projects">Projects</a>
                 </li>
                 <li>
-                    <a
-                        href="/writing"
-                        class="hover:bg-blue-300 p-2 rounded-md m-2">Writing</a
-                    >
+                    <a href="/writing">Writing</a>
                 </li>
             </ul>
         </nav>
@@ -46,9 +38,9 @@ const { title } = Astro.props;
 </html>
 <style is:global>
     :root {
-        --accent: 136, 58, 234;
-        --accent-light: 224, 204, 250;
-        --accent-dark: 49, 10, 101;
+        --accent: 96, 165, 250;
+        --accent-light: 191, 219, 254;
+        --accent-dark: 37, 99, 235;
         --accent-gradient: linear-gradient(
             45deg,
             rgb(var(--accent)),
@@ -58,7 +50,7 @@ const { title } = Astro.props;
     }
     html {
         font-family: system-ui, sans-serif;
-        background-size: 224px;
+        /* background-size: 224px; */
     }
     code {
         font-family:
@@ -77,5 +69,14 @@ const { title } = Astro.props;
         width: calc(80% - 2rem);
         font-size: 20px;
         line-height: 1.6;
+    }
+    nav > ul > li > a {
+        padding: 8px;
+        border-radius: 6px;
+        margin: 8px;
+    }
+    nav > ul > li > a:hover {
+        --tw-bg-opacity: 1;
+        background-color: rgb(147 197 253 / var(--tw-bg-opacity));
     }
 </style>

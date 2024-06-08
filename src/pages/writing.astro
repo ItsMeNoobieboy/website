@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Link from "../components/Link.astro";
 ---
 
 <Layout title="Writing">
@@ -9,23 +10,28 @@ import Layout from "../layouts/Layout.astro";
         <br />
         WIP™
         <p>In the meanwhile, check out some of the things I've written:</p>
-        <ul class="text-blue-500">
-            <li>
-                <a href="https://vanguard.bbns.org/staff_name/yancheng-zhao/"
-                    >The Vanguard - School Newspaper</a
-                >
-            </li>
-            <li>
-                <a href="https://bbnchasm.com/author/yzhao/"
-                    >The CHASM - School STEM Magazine</a
-                >
-            </li>
-            <li>
-                <a
-                    href="https://www.bbns.org/news/on-and-off-campus-blog-theres-a-lot-to-love-about-sophomore-year/"
-                    >Latest School Blog</a
-                >
-            </li>
+        <br />
+        <ul class="text-blue-500 grid grid-cols-2 gap-4">
+            <Link
+                title="The Vanguard"
+                body="A collection of articles I've written for my school newspaper."
+                href="https://vanguard.bbns.org/staff_name/yancheng-zhao/"
+            />
+            <Link
+                title="The CHASM"
+                body="A collection of articles I've written for my school STEM magazine."
+                href="https://bbnchasm.com/author/yzhao/"
+            />
+            <Link
+                title="“There’s a lot to love about sophomore year”"
+                body="School On and Off Campus Blog Article"
+                href="https://www.bbns.org/news/on-and-off-campus-blog-theres-a-lot-to-love-about-sophomore-year/"
+            />
+            <Link
+                title="“My Commute”"
+                body="School On and Off Campus Blog Article"
+                href="https://www.bbns.org/news/on-and-off-campus-blog-theres-a-lot-to-love-about-sophomore-year/"
+            />
         </ul>
     </main>
 </Layout>
