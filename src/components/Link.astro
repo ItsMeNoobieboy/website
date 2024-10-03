@@ -3,20 +3,26 @@ interface Props {
     title: string;
     body: string;
     href: string;
+	target: string;
 }
 
-const { href, title, body } = Astro.props;
+const { href, title, body, target } = Astro.props;
 ---
 
 <li class="link-card bg-slate-200 hover:bg-slate-300 rounded-lg p-5">
-    <a href={href} class="text-black" target="_blank">
-        <h2 class="text-2xl font-semibold">
-            {title}
-        </h2>
-        <p>
-            {body}
-        </p>
-    </a>
+    {
+        href ? (
+            <a href={href} class="text-black" target={target}>
+                <h2 class="text-2xl font-semibold">{title}</h2>
+				<p>{body}</p>
+            </a>
+        ) : (
+			<div class="text-black">
+                <h2 class="text-2xl font-semibold">{title}</h2>
+				<p>{body}</p>
+            </div>
+        )
+    }
 </li>
 <style>
     .link-card {
