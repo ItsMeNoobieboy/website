@@ -19,6 +19,12 @@ import Layout from "../layouts/Layout.astro";
                         class="px-3 py-2 border rounded-md text-lg"
                     />
                 </label>
+                <button
+                    type="button"
+                    id="copyBtn"
+                    class="px-4 py-2 bg-green-600 text-white rounded-md"
+                    >Copy to Clipboard</button
+                >
             </form>
 
             <section class="text-left">
@@ -48,6 +54,7 @@ And I love you like Kanye loves Kanye`;
 
             const output = document.getElementById("output");
             const input = document.getElementById("replacement");
+            const copyBtn = document.getElementById("copyBtn");
 
             function replace(word) {
                 if (!word) {
@@ -64,6 +71,17 @@ And I love you like Kanye loves Kanye`;
 
             // live update on input
             input.addEventListener("input", (e) => replace(e.target.value));
+
+            // copy to clipboard
+            copyBtn.addEventListener("click", async () => {
+                const text = output.textContent || "";
+                if (!text) return;
+
+                await navigator.clipboard.writeText(text);
+                const prev = copyBtn.textContent;
+                copyBtn.textContent = "Copied!";
+                setTimeout(() => (copyBtn.textContent = prev), 3000);
+            });
         </script>
     </main>
 </Layout>
