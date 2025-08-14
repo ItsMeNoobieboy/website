@@ -1,0 +1,69 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="I miss the old Kanye">
+    <main
+        class="flex flex-col justify-center items-center p-6 overflow-hidden text-center text-xl">
+        <div class="mt-6 max-w-3xl w-full">
+            <h1 class="text-3xl font-semibold mb-4">I miss the old...</h1>
+
+            <form
+                id="replaceForm"
+                class="flex flex-wrap gap-3 items-center mb-6 justify-center">
+                <label class="flex items-center gap-2">
+                    <input
+                        id="replacement"
+                        type="text"
+                        placeholder="Enter replacement word"
+                        class="px-3 py-2 border rounded-md text-lg"
+                    />
+                </label>
+            </form>
+
+            <section class="text-left">
+                <h2 class="text-xl font-medium mb-2">Output</h2>
+                <pre
+                    id="output"
+                    class="whitespace-pre-wrap bg-gray-50 p-4 rounded-md border text-base">
+                </pre>
+            </section>
+        </div>
+
+        <script type="module">
+            const original = `I miss the old Kanye, straight from the Go Kanye
+Chop up the soul Kanye, set on his goals Kanye
+I hate the new Kanye, the bad mood Kanye
+The always rude Kanye, spaz in the news Kanye
+I miss the sweet Kanye, chop up the beats Kanye
+I gotta say, at that time I'd like to meet Kanye
+See, I invented Kanye, it wasn't any Kanyes
+And now I look and look around and there's so many Kanyes
+I used to love Kanye, I used to love Kanye
+I even had the pink polo, I thought I was Kanye
+What if Kanye made a song about Kanye
+Called "I Miss the Old Kanye"? Man, that'd be so Kanye
+That's all it was, Kanye, we still love Kanye
+And I love you like Kanye loves Kanye`;
+
+            const output = document.getElementById("output");
+            const input = document.getElementById("replacement");
+
+            function replace(word) {
+                if (!word) {
+                    output.textContent = original;
+                    return;
+                }
+
+                const replaced = original.replace(/Kanye/g, word);
+                output.textContent = replaced;
+            }
+
+            // initialize
+            output.textContent = original;
+
+            // live update on input
+            input.addEventListener("input", (e) => replace(e.target.value));
+        </script>
+    </main>
+</Layout>
