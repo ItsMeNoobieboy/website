@@ -7,14 +7,16 @@ import Layout from "../layouts/Layout.astro";
         class="flex flex-col justify-center items-center p-6 overflow-hidden text-center text-xl">
         <h1 class="text-3xl font-semibold mb-4">Word Counter</h1>
 
+        <h2 class="text-xl font-medium mb-2">
+            Word Count: <span id="wordCount">0</span>
+        </h2>
+
         <textarea
             id="textInput"
             placeholder="Enter your text here..."
             class="w-full
-            max-w-4xl h-screen p-4 border rounded-md text-base mb-6"
+            max-w-4xl h-[70vh] p-4 border rounded-md text-base mb-6"
         ></textarea>
-        
-        <h2 class="text-xl font-medium mb-2">Word Count: <span id="wordCount">0</span></h2>
 
         <script type="module">
             const textInput = document.getElementById("textInput");
