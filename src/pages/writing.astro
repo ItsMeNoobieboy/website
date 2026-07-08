@@ -1,45 +1,41 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import StandardPage from "../layouts/StandardPage.astro";
 import Link from "../components/Link.astro";
 ---
 
-<Layout title="Writing">
-    <main>
-        <h1 class="text-6xl font-bold mb-4">My Writing</h1>
-        In addition to programming and making tech products, I also love writing.
-        <br />
-        WIP™
-        <p>In the meanwhile, check out some of the things I've written:</p>
-        <br />
-        <ul class="text-blue-500 grid grid-cols-2 gap-4">
-            <!-- href="/writing/vanguard"
-            target="_self" -->
-            <Link
-                title="The Vanguard"
-                body="A collection of articles I've written for my school newspaper."
-                href="https://vanguard.bbns.org/staff_name/yancheng-zhao/"
-                target="_blank"
-            />
-            <Link
-                title="The CHASM"
-                body="A collection of articles I've written for my school STEM magazine."
-                href="https://bbnchasm.com/author/yzhao/"
-                target="_blank"
-            />
-            <Link
-                title="“There’s a lot to love about sophomore year”"
-                body="School On and Off Campus Blog Article"
-                href="https://www.bbns.org/news/on-and-off-campus-blog-theres-a-lot-to-love-about-sophomore-year/"
-                target="_blank"
-            />
-            <Link
-                title="“My Commute”"
-                body="School On and Off Campus Blog Article"
-                href="https://www.bbns.org/news/on-and-off-campus-blog-my-commute/"
-                target="_blank"
-            />
-        </ul>
-    </main>
-</Layout>
-
-<style></style>
+<StandardPage title="Writing">
+    <h1 class="text-6xl font-bold mb-4">My Writing</h1>
+    In addition to programming and making tech products, I also love writing.
+    <br />
+    WIP™
+    <p>In the meanwhile, check out some of the things I've written:</p>
+    <br />
+    <ul class="text-accent-dark grid grid-cols-2 gap-4">
+        <!-- href="/writing/vanguard"
+        target="_self" -->
+        <Link
+            title="The Vanguard"
+            body="A collection of articles I've written for my school newspaper."
+            href="https://vanguard.bbns.org/staff_name/yancheng-zhao/"
+            target="_blank"
+        />
+        <Link
+            title="The CHASM"
+            body="A collection of articles I've written for my school STEM magazine."
+            href="https://bbnchasm.com/author/yzhao/"
+            target="_blank"
+        />
+        <Link
+            title="“There’s a lot to love about sophomore year”"
+            body="School On and Off Campus Blog Article"
+            href="https://www.bbns.org/news/on-and-off-campus-blog-theres-a-lot-to-love-about-sophomore-year/"
+            target="_blank"
+        />
+        <Link
+            title="“My Commute”"
+            body="School On and Off Campus Blog Article"
+            href="https://www.bbns.org/news/on-and-off-campus-blog-my-commute/"
+            target="_blank"
+        />
+    </ul>
+</StandardPage>

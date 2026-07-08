@@ -21,17 +21,25 @@ const { title } = Astro.props;
     </head>
     <body>
         <nav
-            class="bg-blue-400 text-slate-50 selection:bg-slate-50 selection:text-blue-400 font-bold text-center p-3 grid justify-items-end place-items-center grid-flow-col grid-rows-1">
+            class="bg-accent text-slate-50 selection:bg-slate-50 selection:text-accent font-bold text-center p-3 grid justify-items-end place-items-center grid-flow-col grid-rows-1">
             <div class="inline p-2 justify-self-start">Yancheng Zhao</div>
             <ul class="flex font-bold m-3">
                 <li>
-                    <a href="/">Home</a>
+                    <a class="p-2 m-2 rounded-md hover:bg-accent-light" href="/"
+                        >Home</a
+                    >
                 </li>
                 <li>
-                    <a href="/projects">Projects</a>
+                    <a
+                        class="p-2 m-2 rounded-md hover:bg-accent-light"
+                        href="/projects">Projects</a
+                    >
                 </li>
                 <li>
-                    <a href="/writing">Writing</a>
+                    <a
+                        class="p-2 m-2 rounded-md hover:bg-accent-light"
+                        href="/writing">Writing</a
+                    >
                 </li>
             </ul>
         </nav>
@@ -39,51 +47,3 @@ const { title } = Astro.props;
         <slot />
     </body>
 </html>
-<style is:global>
-    :root {
-        --accent: 96, 165, 250;
-        --accent-light: 191, 219, 254;
-        --accent-dark: 37, 99, 235;
-        --accent-gradient: linear-gradient(
-            45deg,
-            rgb(var(--accent)),
-            rgb(var(--accent-light)) 30%,
-            white 60%
-        );
-    }
-    html {
-        font-family: system-ui, sans-serif;
-        /* background-size: 224px; */
-    }
-    code {
-        font-family:
-            Menlo,
-            Monaco,
-            Lucida Console,
-            Liberation Mono,
-            DejaVu Sans Mono,
-            Bitstream Vera Sans Mono,
-            Courier New,
-            monospace;
-    }
-    main {
-        margin: auto;
-        padding: 1rem;
-        width: calc(90%);
-        font-size: 20px;
-        line-height: 1.6;
-    }
-    a:not(nav a) {
-        --tw-text-opacity: 1;
-        color: rgb(59 130 246 / var(--tw-text-opacity));
-    }
-    nav > ul > li > a {
-        padding: 8px;
-        border-radius: 6px;
-        margin: 8px;
-    }
-    nav > ul > li > a:hover {
-        --tw-bg-opacity: 1;
-        background-color: rgb(147 197 253 / var(--tw-bg-opacity));
-    }
-</style>

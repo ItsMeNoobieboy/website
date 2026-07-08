@@ -1,6 +1,4 @@
 ---
-import "../styles/global.css";
-
 interface Props {
     title: string;
     body: string;
@@ -11,32 +9,19 @@ interface Props {
 const { href, title, body, target } = Astro.props;
 ---
 
-<li class="link-card bg-slate-200 hover:bg-slate-300 rounded-lg p-5">
+<li
+    class="rounded-lg p-5 bg-size-[400%] bg-slate-200 bg-linear-45 hover:from-accent hover:via-accent-lighter hover:via-30% hover:to-white hover:to-60% transition-all duration-300">
     {
         href ? (
             <a href={href} target={target}>
-                <h2 class="text-black text-2xl font-semibold">{title}</h2>
+                <h2 class="m-0 text-black text-xl font-semibold">{title}</h2>
                 <p class="text-black">{body}</p>
             </a>
         ) : (
             <div>
-                <h2 class="text-black text-2xl font-semibold">{title}</h2>
+                <h2 class="m-0 text-black text-xl font-semibold">{title}</h2>
                 <p class="text-black">{body}</p>
             </div>
         )
     }
 </li>
-<style>
-    .link-card {
-        background-size: 400%;
-    }
-    h2 {
-        margin: 0;
-        font-size: 1.25rem;
-        transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .link-card:is(:hover) {
-        background-position: 0;
-        background-image: var(--accent-gradient);
-    }
-</style>

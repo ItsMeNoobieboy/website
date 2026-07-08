@@ -1,80 +1,86 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import StandardPage from "../layouts/StandardPage.astro";
 ---
 
-<Layout title="Home">
-    <main>
-        👋 ’Sup, I’m
-        <h1 class="text-7xl font-bold mb-4">Yancheng.</h1>
-        <p>
-            Welcome to my website! I'm a teenager living in the Boston area, and
-            I love programming and writing.
-        </p>
-        <br />
-        <p>This site is a work in progress. In the meantime, you can:</p>
-        <br />
-        <div>
-            <h2 class="text-2xl font-semibold">
-                Check out some of my links below:
-            </h2>
-            <ul>
-                <li>
-                    <a href="https://github.com/ItsMeNoobieboy">GitHub</a>
-                </li>
-                <li>
-                    <a href="https://itsmenoobieboy.itch.io/">Itch.io</a>
-                </li>
-                <li><a href="https://devpost.com/yzhao">Devpost</a></li>
-            </ul>
-        </div>
-        <br />
-        <div>
-            <h2 class="text-2xl font-semibold">Contact me at:</h2>
-            <ul>
-                <li>
-                    Email: <button class="text-blue-500" id="email"
-                        >yancheng [at] duck [dot] com</button
-                    > (<span id="emailCopyText">Click to copy</span>)
-                </li>
-                <li>
-                    Discord: <button class="text-blue-500" id="discord"
-                        >itsmenoobieboy</button
-                    > (<span id="discordCopyText">Click to copy</span>)
-                </li>
-                <li>
-                    Hack Clubber? Message me on Slack: <button
-                        class="text-blue-500"
-                        id="slack">@Yancheng</button
-                    > (<span id="slackCopyText">Click to copy</span>)
-                </li>
-            </ul>
-        </div>
-    </main>
-</Layout>
+<StandardPage title="Home">
+    👋 ’Sup, I’m
+    <h1 class="text-7xl font-bold mb-4">Yancheng.</h1>
+    <p>
+        Welcome to my website! I'm a teenager living in the Boston area, and I
+        love programming and writing.
+    </p>
+    <br />
+    <p>This site is a work in progress. In the meantime, you can:</p>
+    <br />
+    <div>
+        <h2 class="text-2xl font-semibold">
+            Check out some of my links below:
+        </h2>
+        <ul>
+            <li>
+                <a href="https://github.com/ItsMeNoobieboy">GitHub</a>
+            </li>
+            <li>
+                <a href="https://itsmenoobieboy.itch.io/">Itch.io</a>
+            </li>
+            <li><a href="https://devpost.com/yzhao">Devpost</a></li>
+        </ul>
+    </div>
+    <br />
+    <div>
+        <h2 class="text-2xl font-semibold">Contact me at:</h2>
+        <ul>
+            <li>
+                Email: <button
+                    class="text-accent-dark hover:cursor-pointer"
+                    id="email">yancheng [at] duck [dot] com</button
+                > (<span id="emailCopyText">Click to copy</span>)
+            </li>
+            <li>
+                Discord: <button
+                    class="text-accent-dark hover:cursor-pointer"
+                    id="discord">itsmenoobieboy</button
+                > (<span id="discordCopyText">Click to copy</span>)
+            </li>
+            <li>
+                Hack Clubber? Message me on Slack: <button
+                    class="text-accent-dark hover:cursor-pointer"
+                    id="slack">@Yancheng</button
+                > (<span id="slackCopyText">Click to copy</span>)
+            </li>
+        </ul>
+    </div>
+</StandardPage>
 
 <script>
-    function copyEmail() {
-        var text = document.getElementById("email").innerText;
-        navigator.clipboard.writeText(
-            text.replace(" [at] ", "@").replace(" [dot] ", ".")
-        );
-        document.getElementById("emailCopyText").innerText = "Copied!";
-    }
-    document.getElementById("email").addEventListener("click", copyEmail);
+    function copy(sourceId: string) {
+        var text = document.getElementById(sourceId)?.innerText;
+        if (text) {
+            if (sourceId === "email") {
+                text = text.replace(" [at] ", "@").replace(" [dot] ", ".");
+            }
 
-    function copyDiscord() {
-        var text = document.getElementById("discord").innerText;
-        navigator.clipboard.writeText(text);
-        document.getElementById("discordCopyText").innerText = "Copied!";
-    }
-    document.getElementById("discord").addEventListener("click", copyDiscord);
+            navigator.clipboard.writeText(text);
 
-    function copySlack() {
-        var text = document.getElementById("slack").innerText;
-        navigator.clipboard.writeText(text);
-        document.getElementById("slackCopyText").innerText = "Copied!";
+            // Reset other copy texts
+            ["email", "discord", "slack"].forEach((id) => {
+                var copyText = document.getElementById(id + "CopyText");
+                if (id !== sourceId) {
+                    if (copyText) copyText.innerText = "Click to copy";
+                } else {
+                    if (copyText) copyText.innerText = "Copied!";
+                }
+            });
+        }
     }
-    document.getElementById("slack").addEventListener("click", copySlack);
+
+    document.getElementById("email")?.addEventListener("click", function () {
+        copy("email");
+    });
+    document.getElementById("discord")?.addEventListener("click", function () {
+        copy("discord");
+    });
+    document.getElementById("slack")?.addEventListener("click", function () {
+        copy("slack");
+    });
 </script>
-
-<style></style>
