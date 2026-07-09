@@ -13,7 +13,7 @@ const { href, title, body, target } = Astro.props;
     class="rounded-lg p-5 bg-size-[400%] bg-slate-200 bg-linear-45 hover:from-accent hover:via-accent-lighter hover:via-30% hover:to-white hover:to-60% transition-all duration-300">
     {
         href ? (
-            <a href={href} target={target}>
+            <a class="hover:no-underline" href={href} target={target}>
                 <h2 class="m-0 text-black text-xl font-semibold">{title}</h2>
                 <p class="text-black">{body}</p>
             </a>
