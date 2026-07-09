@@ -14,13 +14,13 @@ import FunPage from "../layouts/FunPage.astro";
                     id="replacement"
                     type="text"
                     placeholder="Enter replacement word"
-                    class="px-3 py-2 border rounded-md text-lg"
+                    class="px-3 py-2 border border-black/15 rounded-md text-lg"
                 />
             </label>
             <button
                 type="button"
                 id="copyBtn"
-                class="px-4 py-2 bg-green-600 text-white rounded-md"
+                class="px-4 py-2 bg-green-600 text-slate-50 rounded-md"
                 >Copy to Clipboard</button
             >
         </form>
@@ -29,12 +29,13 @@ import FunPage from "../layouts/FunPage.astro";
             <h2 class="text-xl font-medium mb-2">Output</h2>
             <pre
                 id="output"
-                class="whitespace-pre-wrap bg-gray-50 p-4 rounded-md border text-base">Loading...</pre>
+                class="whitespace-pre-wrap bg-slate-100 p-4 rounded-md border border-black/15 text-base">Loading...</pre>
         </section>
     </div>
+</FunPage>
 
-    <script type="module">
-        const original = `I miss the old Kanye, straight from the Go Kanye
+<script type="module">
+    const original = `I miss the old Kanye, straight from the Go Kanye
 Chop up the soul Kanye, set on his goals Kanye
 I hate the new Kanye, the bad mood Kanye
 The always rude Kanye, spaz in the news Kanye
@@ -49,35 +50,34 @@ Called "I Miss the Old Kanye"? Man, that'd be so Kanye
 That's all it was, Kanye, we still love Kanye
 And I love you like Kanye loves Kanye`;
 
-        const output = document.getElementById("output");
-        const input = document.getElementById("replacement");
-        const copyBtn = document.getElementById("copyBtn");
+    const output = document.getElementById("output");
+    const input = document.getElementById("replacement");
+    const copyBtn = document.getElementById("copyBtn");
 
-        function replace(word) {
-            if (!word) {
-                output.textContent = original;
-                return;
-            }
-
-            const replaced = original.replace(/Kanye/g, word);
-            output.textContent = replaced;
+    function replace(word) {
+        if (!word) {
+            output.textContent = original;
+            return;
         }
 
-        // initialize
-        output.textContent = original;
+        const replaced = original.replace(/Kanye/g, word);
+        output.textContent = replaced;
+    }
 
-        // live update on input
-        input.addEventListener("input", (e) => replace(e.target.value));
+    // initialize
+    output.textContent = original;
 
-        // copy to clipboard
-        copyBtn.addEventListener("click", async () => {
-            const text = output.textContent || "";
-            if (!text) return;
+    // live update on input
+    input.addEventListener("input", (e) => replace(e.target.value));
 
-            await navigator.clipboard.writeText(text);
-            const prev = copyBtn.textContent;
-            copyBtn.textContent = "Copied!";
-            setTimeout(() => (copyBtn.textContent = prev), 3000);
-        });
-    </script>
-</FunPage>
+    // copy to clipboard
+    copyBtn.addEventListener("click", async () => {
+        const text = output.textContent || "";
+        if (!text) return;
+
+        await navigator.clipboard.writeText(text);
+        const prev = copyBtn.textContent;
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => (copyBtn.textContent = prev), 3000);
+    });
+</script>
