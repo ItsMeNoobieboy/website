@@ -9,6 +9,10 @@
 }
 
 @layer base {
+    body {
+        @apply bg-slate-50 text-slate-950;
+    }
+
     a:not(nav a) {
         @apply text-accent-dark;
         @apply hover:underline;

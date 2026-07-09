@@ -22,7 +22,7 @@ const { title, body, subtitle, tags = [], searchText, links = [] } = Astro.props
     data-search-text={searchText}
 >
     <div>
-        <h2 class="text-2xl font-semibold text-black">{title}</h2>
+        <h2 class="text-2xl font-semibold text-slate-950">{title}</h2>
 
         {
             subtitle && (
@@ -32,13 +32,13 @@ const { title, body, subtitle, tags = [], searchText, links = [] } = Astro.props
             )
         }
 
-        <p class="mt-3 text-base leading-snug text-black">{body}</p>
+        <p class="mt-3 text-base leading-snug text-slate-950">{body}</p>
 
         {
             tags.length > 0 && (
                 <ul class="mt-4 flex flex-wrap gap-2">
                     {tags.map((tag) => (
-                        <li class="rounded-full bg-slate-300 px-3 py-1 text-xs font-medium text-black">
+                        <li class="rounded-full bg-slate-300 px-3 py-1 text-xs font-medium text-slate-950">
                             {tag}
                         </li>
                     ))}

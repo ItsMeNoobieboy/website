@@ -14,13 +14,17 @@ const { href, title, body, target } = Astro.props;
     {
         href ? (
             <a class="hover:no-underline" href={href} target={target}>
-                <h2 class="m-0 text-black text-xl font-semibold">{title}</h2>
-                <p class="text-black">{body}</p>
+                <h2 class="m-0 text-slate-950 text-xl font-semibold">
+                    {title}
+                </h2>
+                <p class="text-slate-950">{body}</p>
             </a>
         ) : (
             <div>
-                <h2 class="m-0 text-black text-xl font-semibold">{title}</h2>
-                <p class="text-black">{body}</p>
+                <h2 class="m-0 text-slate-950 text-xl font-semibold">
+                    {title}
+                </h2>
+                <p class="text-slate-950">{body}</p>
             </div>
         )
     }
