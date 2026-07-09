@@ -11,6 +11,8 @@
 @layer base {
     a:not(nav a) {
         @apply text-accent-dark;
+        @apply hover:underline;
+        @apply hover:decoration-2;
     }
     code {
         @apply font-mono;
