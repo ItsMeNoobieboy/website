@@ -1,5 +1,21 @@
 ---
 import StandardPage from "../layouts/StandardPage.astro";
+import ProjectItem from "../components/ProjectItem.astro";
+import projects from "../data/projects.json";
+
+const searchableProjects = projects.map((project) => ({
+    ...project,
+    searchText: [
+        project.title,
+        project.subtitle ?? "",
+        project.body,
+        ...(project.tags ?? []),
+        ...(project.links?.flatMap((link) => [link.label, link.href]) ?? []),
+    ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase(),
+}));
 ---
 
 <StandardPage title="Projects">
@@ -13,19 +29,49 @@ import StandardPage from "../layouts/StandardPage.astro";
     <p>
         In the meanwhile, check out some of the terrible things I made recently
         at <a href="https://hacknight.co/" target="_blank">HacKnight</a>:
-        <ul>
-            <li>
-                <a href="https://skibidi.yanchengzhao.com" target="_blank"
-                    >Gyod's Story</a
-                >, a pure brainrot short story made for the boba website
-                workshop.
-            </li>
-            <li>
-                <a href="https://wizard.yanchengzhao.com" target="_blank"
-                    >The Mosquito</a
-                >, an AI text adventure game made for the hack-scoop (project
-                wizard orpheus) workshop.
-            </li>
-        </ul>
     </p>
+
+    <label class="mt-4 block w-full" for="project-search">
+        <span class="mb-2 block text-sm font-medium text-slate-700">
+            Search projects
+        </span>
+        <input
+            id="project-search"
+            type="search"
+            placeholder="Search by keyword, tag, or link"
+            class="w-full rounded-lg border border-slate-300 px-4 py-3 text-base"
+        />
+    </label>
+
+    <p id="project-search-empty" class="mt-4 hidden text-sm text-slate-700">
+        No projects match that search.
+    </p>
+
+    <ul
+        id="project-list"
+        class="mt-4 columns-1 gap-4 p-0 list-none md:columns-2 lg:columns-3">
+        {searchableProjects.map((project) => <ProjectItem {...project} />)}
+    </ul>
 </StandardPage>
+
+<script type="module">
+    const searchInput = document.getElementById("project-search");
+    const projectList = document.getElementById("project-list");
+    const projectSearchEmpty = document.getElementById("project-search-empty");
+
+    searchInput.addEventListener("input", () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        let hasVisibleProjects = false;
+
+        for (const projectItem of projectList.children) {
+            const searchText = projectItem.dataset.searchText.toLowerCase();
+            const isVisible = searchText.includes(searchTerm);
+            projectItem.style.display = isVisible ? "block" : "none";
+            if (isVisible) hasVisibleProjects = true;
+        }
+
+        projectSearchEmpty.style.display = hasVisibleProjects
+            ? "none"
+            : "block";
+    });
+</script>

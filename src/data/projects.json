@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Gyod's Story",
+        "body": "A pure brainrot short story made for the Hack Club Boba Drops website workshop during HacKnight.",
+        "tags": ["web", "HacKnight", "Hack Club", "random"],
+        "links": [
+            {
+                "label": "Visit site",
+                "href": "https://skibidi.yanchengzhao.com"
+            },
+            {
+                "label": "GitHub",
+                "href": "https://github.com/ItsMeNoobieboy/skibidi-boba-drop"
+            }
+        ]
+    },
+    {
+        "title": "The Mosquito",
+        "body": "An AI text adventure game made for the Hack Club Wizard Orpheus (hack-scoop) workshop during HacKnight.",
+        "tags": ["web", "game", "AI", "HacKnight", "Hack Club", "random"],
+        "links": [
+            {
+                "label": "Visit site",
+                "href": "https://wizard.yanchengzhao.com"
+            },
+            {
+                "label": "GitHub",
+                "href": "https://github.com/ItsMeNoobieboy/Hack-Scoop"
+            }
+        ]
+    }
+]
