@@ -14,13 +14,13 @@ import FunPage from "../layouts/FunPage.astro";
                     id="replacement"
                     type="text"
                     placeholder="Enter replacement word"
-                    class="px-3 py-2 border border-slate-300 rounded-md text-lg"
+                    class="px-3 py-2 border border-base-300 rounded-md text-lg"
                 />
             </label>
             <button
                 type="button"
                 id="copyBtn"
-                class="px-4 py-2 bg-green-600 text-slate-50 rounded-md"
+                class="px-4 py-2 bg-green-600 dark:bg-green-400 text-base-50 rounded-md"
                 >Copy to Clipboard</button
             >
         </form>
@@ -29,7 +29,7 @@ import FunPage from "../layouts/FunPage.astro";
             <h2 class="text-xl font-medium mb-2">Output</h2>
             <pre
                 id="output"
-                class="whitespace-pre-wrap bg-slate-100 p-4 rounded-md border border-slate-300 text-base">Loading...</pre>
+                class="whitespace-pre-wrap bg-base-100 p-4 rounded-md border border-base-300 text-base">Loading...</pre>
         </section>
     </div>
 </FunPage>

@@ -29,7 +29,7 @@ const svg = icons[detectType(url)] ?? icons.external;
     href={url}
     target="_blank"
     rel="noreferrer noopener"
-    class="text-sm leading-tight text-accent flex items-center gap-1">
+    class="text-sm leading-tight text-accent-400 flex items-center gap-1">
     <span class="w-4 h-4" set:html={svg} />
     {label}
 </a>

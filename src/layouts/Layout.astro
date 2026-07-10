@@ -14,6 +14,38 @@ const { title } = Astro.props;
         <meta charset="UTF-8" />
         <meta name="description" content="Astro description" />
         <meta name="viewport" content="width=device-width" />
+        <script is:inline>
+            (function () {
+                const storageKey = "theme-preference";
+
+                const getEffectiveTheme = (preference) => {
+                    if (preference === "system") {
+                        return window.matchMedia("(prefers-color-scheme: dark)")
+                            .matches
+                            ? "dark"
+                            : "light";
+                    }
+                    return preference;
+                };
+
+                const applyTheme = (preference) => {
+                    const effectiveTheme = getEffectiveTheme(preference);
+                    document.documentElement.dataset.theme = effectiveTheme;
+                    document.documentElement.classList.toggle(
+                        "dark",
+                        effectiveTheme === "dark",
+                    );
+                    document.documentElement.style.colorScheme = effectiveTheme;
+                    return effectiveTheme;
+                };
+
+                // Expose so the module script below can reuse this logic
+                // instead of redefining it.
+                window.__theme = { storageKey, getEffectiveTheme, applyTheme };
+
+                applyTheme(localStorage.getItem(storageKey) ?? "system");
+            })();
+        </script>
         <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
         <link rel="icon" type="image/gif" href="/pfp.gif" />
         <meta name="generator" content={Astro.generator} />
@@ -21,32 +53,215 @@ const { title } = Astro.props;
     </head>
     <body>
         <nav
-            class="bg-accent text-slate-50 selection:bg-slate-50 selection:text-accent font-bold text-center p-3 grid justify-items-end place-items-center grid-flow-col grid-rows-1">
+            class="bg-accent-500 text-base-50 selection:bg-base-50 selection:text-accent-500 font-bold text-center p-3 flex items-center justify-between gap-4">
             <div class="inline text-3xl p-2 justify-self-start">
                 Yancheng Zhao
             </div>
-            <ul class="flex font-bold m-3 text-xl">
-                <li>
-                    <a
-                        class="p-2 m-2 rounded-md hover:underline decoration-2"
-                        href="/">Home</a
-                    >
-                </li>
-                <li>
-                    <a
-                        class="p-2 m-2 rounded-md hover:underline decoration-2"
-                        href="/projects">Projects</a
-                    >
-                </li>
-                <li>
-                    <a
-                        class="p-2 m-2 rounded-md hover:underline decoration-2"
-                        href="/writing">Writing</a
-                    >
-                </li>
-            </ul>
+            <div class="flex items-center justify-end gap-4">
+                <ul
+                    class="flex items-center justify-end gap-4 font-bold text-xl">
+                    <li>
+                        <a
+                            class="p-2 rounded-md hover:underline decoration-2"
+                            href="/">Home</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            class="p-2 rounded-md hover:underline decoration-2"
+                            href="/projects">Projects</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            class="p-2 rounded-md hover:underline decoration-2"
+                            href="/writing">Writing</a
+                        >
+                    </li>
+                </ul>
+                <details class="relative">
+                    <summary
+                        class="list-none inline-flex cursor-pointer items-center justify-center rounded-md p-2 transition-transform duration-100 ease-out hover:scale-125"
+                        aria-label="Theme preference"
+                        aria-haspopup="menu">
+                        <span data-theme-icon="light" hidden>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                class="icon icon-tabler icons-tabler-filled icon-tabler-sun">
+                                <path
+                                    stroke="none"
+                                    d="M0 0h24v24H0z"
+                                    fill="none"></path>
+                                <path
+                                    d="M12 19a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z"
+                                ></path>
+                                <path
+                                    d="M18.313 16.91l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.218 -1.567l.102 .07z"
+                                ></path>
+                                <path
+                                    d="M7.007 16.993a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z"
+                                ></path>
+                                <path
+                                    d="M4 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z"
+                                ></path>
+                                <path
+                                    d="M21 11a1 1 0 0 1 .117 1.993l-.117 .007h-1a1 1 0 0 1 -.117 -1.993l.117 -.007h1z"
+                                ></path>
+                                <path
+                                    d="M6.213 4.81l.094 .083l.7 .7a1 1 0 0 1 -1.32 1.497l-.094 -.083l-.7 -.7a1 1 0 0 1 1.217 -1.567l.102 .07z"
+                                ></path>
+                                <path
+                                    d="M19.107 4.893a1 1 0 0 1 .083 1.32l-.083 .094l-.7 .7a1 1 0 0 1 -1.497 -1.32l.083 -.094l.7 -.7a1 1 0 0 1 1.414 0z"
+                                ></path>
+                                <path
+                                    d="M12 2a1 1 0 0 1 .993 .883l.007 .117v1a1 1 0 0 1 -1.993 .117l-.007 -.117v-1a1 1 0 0 1 1 -1z"
+                                ></path>
+                                <path
+                                    d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z"
+                                ></path>
+                            </svg>
+                        </span>
+                        <span data-theme-icon="dark" hidden>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                class="icon icon-tabler icons-tabler-filled icon-tabler-moon">
+                                <path
+                                    stroke="none"
+                                    d="M0 0h24v24H0z"
+                                    fill="none"></path>
+                                <path
+                                    d="M12 1.992a10 10 0 1 0 9.236 13.838c.341 -.82 -.476 -1.644 -1.298 -1.31a6.5 6.5 0 0 1 -6.864 -10.787l.077 -.08c.551 -.63 .113 -1.653 -.758 -1.653h-.266l-.068 -.006l-.06 -.002z"
+                                ></path>
+                            </svg>
+                        </span>
+                        <span data-theme-icon="system" hidden>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                class="icon icon-tabler icons-tabler-filled icon-tabler-device-desktop">
+                                <path
+                                    stroke="none"
+                                    d="M0 0h24v24H0z"
+                                    fill="none"></path>
+                                <path
+                                    d="M7 21a1 1 0 0 1 0 -2h1v-2h-4a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h16a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-4v2h1a1 1 0 0 1 0 2zm7 -4h-4v2h4z"
+                                ></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div
+                        class="absolute right-0 z-10 mt-2 min-w-40 rounded-md bg-base-50 p-1 text-base-950 shadow-lg ring-1 ring-base-200"
+                        role="menu"
+                        aria-label="Theme preference options">
+                        <button
+                            class="block w-full rounded px-3 py-2 text-left hover:bg-base-100 hover:cursor-pointer"
+                            type="button"
+                            role="menuitemradio"
+                            data-theme-option="light">Light mode</button
+                        >
+                        <button
+                            class="block w-full rounded px-3 py-2 text-left hover:bg-base-100 hover:cursor-pointer"
+                            type="button"
+                            role="menuitemradio"
+                            data-theme-option="dark">Dark mode</button
+                        >
+                        <button
+                            class="block w-full rounded px-3 py-2 text-left hover:bg-base-100 hover:cursor-pointer"
+                            type="button"
+                            role="menuitemradio"
+                            data-theme-option="system">System</button
+                        >
+                    </div>
+                </details>
+            </div>
         </nav>
 
         <slot />
     </body>
 </html>
+
+<script type="module">
+    // Reuse the logic defined in the inline head script instead of
+    // redefining getEffectiveTheme/applyTheme a second time.
+    const { storageKey, applyTheme } = window.__theme;
+
+    const themeToggle = document.querySelector("details");
+    const themeButton = document.querySelector(
+        "summary[aria-label='Theme preference']",
+    );
+    const themeIcons = document.querySelectorAll("[data-theme-icon]");
+    const themeOptions = document.querySelectorAll("[data-theme-option]");
+    const themeStatus = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const setTheme = (preference) => {
+        applyTheme(preference);
+
+        themeIcons.forEach((icon) => {
+            icon.hidden = icon.dataset.themeIcon !== preference;
+        });
+
+        themeOptions.forEach((button) => {
+            button.setAttribute(
+                "aria-checked",
+                button.dataset.themeOption === preference ? "true" : "false",
+            );
+        });
+
+        if (themeButton) {
+            themeButton.setAttribute(
+                "aria-label",
+                `Theme preference: ${preference}`,
+            );
+        }
+    };
+
+    const storedPreference = localStorage.getItem(storageKey) ?? "system";
+    setTheme(storedPreference);
+
+    themeOptions.forEach((button) => {
+        button.addEventListener("click", () => {
+            const preference = button.dataset.themeOption ?? "system";
+
+            localStorage.setItem(storageKey, preference);
+            setTheme(preference);
+
+            if (themeToggle) {
+                themeToggle.open = false;
+            }
+        });
+    });
+
+    themeStatus.addEventListener("change", () => {
+        if ((localStorage.getItem(storageKey) ?? "system") === "system") {
+            setTheme("system");
+        }
+    });
+
+    // Close on outside click or Escape.
+    document.addEventListener("click", (e) => {
+        if (
+            themeToggle &&
+            themeToggle.open &&
+            !themeToggle.contains(e.target)
+        ) {
+            themeToggle.open = false;
+        }
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && themeToggle) {
+            themeToggle.open = false;
+        }
+    });
+</script>
