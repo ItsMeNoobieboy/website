@@ -3,7 +3,21 @@ import Layout from "../layouts/Layout.astro";
 import ProjectItem from "../components/ProjectItem.astro";
 import projects from "../data/projects.json";
 
-const searchableProjects = projects.map((project) => ({
+interface ProjectData {
+    title: string;
+    body: string;
+    subtitle?: string;
+    tags?: string[];
+    links?: {
+        label: string;
+        href: string;
+        target?: string;
+    }[];
+}
+
+const typedProjects = projects as ProjectData[];
+
+const searchableProjects = typedProjects.map((project) => ({
     ...project,
     searchText: [
         project.title,

@@ -8,7 +8,7 @@ export default defineConfig({
 
     prefetch: {
         prefetchAll: true, // prefetch every link, not just ones you tag
-        defaultStrategy: "viewport",
+        defaultStrategy: "hover",
     },
 
     vite: {

@@ -1,5 +1,20 @@
 [
     {
+        "title": "Personal Website",
+        "body": "My personal website, the one you are on right now. Yes, you!",
+        "tags": ["web", "Astro"],
+        "links": [
+            {
+                "label": "Visit site",
+                "href": "https://www.yanchengzhao.com/"
+            },
+            {
+                "label": "GitHub",
+                "href": "https://github.com/ItsMeNoobieboy/website"
+            }
+        ]
+    },
+    {
         "title": "Gyod's Story",
         "body": "A pure brainrot short story made for the Hack Club Boba Drops website workshop during HacKnight.",
         "tags": ["web", "HacKnight", "Hack Club", "random"],
