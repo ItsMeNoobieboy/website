@@ -15,8 +15,8 @@ const mainClass =
 
 const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/projects", label: "Projects" },
-    { href: "/writing", label: "Writing" },
+    { href: "/projects/", label: "Projects" },
+    { href: "/writing/", label: "Writing" },
 ];
 ---
 
@@ -43,6 +43,8 @@ const navLinks = [
                 const applyTheme = (preference) => {
                     const effectiveTheme = getEffectiveTheme(preference);
                     document.documentElement.dataset.theme = effectiveTheme;
+                    document.documentElement.dataset.themePreference =
+                        preference;
                     document.documentElement.classList.toggle(
                         "dark",
                         effectiveTheme === "dark",
@@ -88,7 +90,7 @@ const navLinks = [
                             class="list-none inline-flex cursor-pointer items-center justify-center rounded-md p-2 transition-transform duration-100 ease-out hover:scale-125"
                             aria-label="Theme preference"
                             aria-haspopup="menu">
-                            <span data-theme-icon="light" class="hidden">
+                            <span data-theme-icon="light">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -129,7 +131,7 @@ const navLinks = [
                                     ></path>
                                 </svg>
                             </span>
-                            <span data-theme-icon="dark" class="hidden">
+                            <span data-theme-icon="dark">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -146,7 +148,7 @@ const navLinks = [
                                     ></path>
                                 </svg>
                             </span>
-                            <span data-theme-icon="system" class="hidden">
+                            <span data-theme-icon="system">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -260,19 +262,11 @@ const navLinks = [
     const themeButton = document.querySelector(
         "summary[aria-label='Theme preference']",
     );
-    const themeIcons = document.querySelectorAll("[data-theme-icon]");
     const themeOptions = document.querySelectorAll("[data-theme-option]");
     const themeStatus = window.matchMedia("(prefers-color-scheme: dark)");
 
     const setTheme = (preference) => {
         applyTheme(preference);
-
-        themeIcons.forEach((icon) => {
-            icon.classList.toggle(
-                "hidden",
-                icon.dataset.themeIcon !== preference,
-            );
-        });
 
         themeOptions.forEach((button) => {
             button.setAttribute(
