@@ -1,16 +1,16 @@
 ---
-import StandardPage from "../layouts/StandardPage.astro";
+import Layout from "../layouts/Layout.astro";
 import Link from "../components/Link.astro";
 ---
 
-<StandardPage title="Writing">
+<Layout title="Writing">
     <h1 class="text-6xl font-bold mb-4">My Writing</h1>
     In addition to programming and making tech products, I also love writing.
     <br />
     WIP™
     <p>In the meanwhile, check out some of the things I’ve written:</p>
     <br />
-    <ul class="text-accent-500 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <!-- href="/writing/vanguard"
         target="_self" -->
         <Link
@@ -38,4 +38,4 @@ import Link from "../components/Link.astro";
             target="_blank"
         />
     </ul>
-</StandardPage>
+</Layout>

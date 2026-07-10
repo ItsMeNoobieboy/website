@@ -1,8 +1,8 @@
 ---
-import FunPage from "../layouts/FunPage.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<FunPage title="Word Counter">
+<Layout title="Word Counter" variant="fun">
     <h1 class="text-3xl font-semibold mb-4">Word Counter</h1>
 
     <h2 class="text-xl font-medium mb-2">
@@ -15,7 +15,7 @@ import FunPage from "../layouts/FunPage.astro";
         class="w-full
         max-w-4xl h-[70vh] p-4 border border-base-300 rounded-md text-base mb-6"
     ></textarea>
-</FunPage>
+</Layout>
 
 <script type="module">
     const textInput = document.getElementById("textInput");

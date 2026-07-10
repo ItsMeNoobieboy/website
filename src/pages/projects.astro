@@ -1,5 +1,5 @@
 ---
-import StandardPage from "../layouts/StandardPage.astro";
+import Layout from "../layouts/Layout.astro";
 import ProjectItem from "../components/ProjectItem.astro";
 import projects from "../data/projects.json";
 
@@ -18,7 +18,7 @@ const searchableProjects = projects.map((project) => ({
 }));
 ---
 
-<StandardPage title="Projects">
+<Layout title="Projects">
     <h1 class="text-6xl font-bold mb-4">My Projects</h1>
     A collection of things I have made over the years. Some I’m proud of, others maybe
     not so much...
@@ -31,7 +31,7 @@ const searchableProjects = projects.map((project) => ({
         at <a href="https://hacknight.co/" target="_blank">HacKnight</a>:
     </p>
 
-    <label class="mt-4 block w-full" for="project-search">
+    <label class="mt-4 block" for="project-search">
         <span class="mb-2 block text-sm font-medium text-base-700">
             Search projects
         </span>
@@ -52,7 +52,7 @@ const searchableProjects = projects.map((project) => ({
         class="mt-4 columns-1 gap-4 p-0 list-none md:columns-2 lg:columns-3">
         {searchableProjects.map((project) => <ProjectItem {...project} />)}
     </ul>
-</StandardPage>
+</Layout>
 
 <script type="module">
     const searchInput = document.getElementById("project-search");
@@ -66,12 +66,10 @@ const searchableProjects = projects.map((project) => ({
         for (const projectItem of projectList.children) {
             const searchText = projectItem.dataset.searchText.toLowerCase();
             const isVisible = searchText.includes(searchTerm);
-            projectItem.style.display = isVisible ? "block" : "none";
+            projectItem.classList.toggle("hidden", !isVisible);
             if (isVisible) hasVisibleProjects = true;
         }
 
-        projectSearchEmpty.style.display = hasVisibleProjects
-            ? "none"
-            : "block";
+        projectSearchEmpty.classList.toggle("hidden", hasVisibleProjects);
     });
 </script>

@@ -1,8 +1,8 @@
 ---
-import StandardPage from "../layouts/StandardPage.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<StandardPage title="Home">
+<Layout title="Home">
     👋 ’Sup, I’m
     <h1 class="text-7xl font-bold mb-4">Yancheng.</h1>
     <p>
@@ -32,54 +32,46 @@ import StandardPage from "../layouts/StandardPage.astro";
         <ul>
             <li>
                 Email: <button
-                    class="text-accent-500 hover:cursor-pointer hover:underline decoration-2"
+                    class="text-accent-500 cursor-pointer hover:underline decoration-2"
                     id="email">yancheng [at] duck [dot] com</button
                 > (<span id="emailCopyText">Click to copy</span>)
             </li>
             <li>
                 Discord: <button
-                    class="text-accent-500 hover:cursor-pointer hover:underline decoration-2"
+                    class="text-accent-500 cursor-pointer hover:underline decoration-2"
                     id="discord">itsmenoobieboy</button
                 > (<span id="discordCopyText">Click to copy</span>)
             </li>
             <li>
                 Hack Clubber? Message me on Slack: <button
-                    class="text-accent-500 hover:cursor-pointer hover:underline decoration-2"
+                    class="text-accent-500 cursor-pointer hover:underline decoration-2"
                     id="slack">@Yancheng</button
                 > (<span id="slackCopyText">Click to copy</span>)
             </li>
         </ul>
     </div>
-</StandardPage>
+</Layout>
 
 <script type="module">
-    function copy(sourceId) {
-        var text = document.getElementById(sourceId).innerText;
+    const copyIds = ["email", "discord", "slack"];
 
-        if (sourceId === "email") {
-            text = text.replace(" [at] ", "@").replace(" [dot] ", ".");
-        }
-
-        navigator.clipboard.writeText(text);
-
-        // Reset other copy texts
-        ["email", "discord", "slack"].forEach((id) => {
-            var copyText = document.getElementById(id + "CopyText");
-            if (id !== sourceId) {
-                if (copyText) copyText.innerText = "Click to copy";
-            } else {
-                if (copyText) copyText.innerText = "Copied!";
+    copyIds.forEach((id) => {
+        document.getElementById(id).addEventListener("click", async () => {
+            let text = document.getElementById(id).innerText;
+            if (!text) return;
+            if (id === "email") {
+                text = text.replace(" [at] ", "@").replace(" [dot] ", ".");
             }
-        });
-    }
 
-    document.getElementById("email").addEventListener("click", function () {
-        copy("email");
-    });
-    document.getElementById("discord").addEventListener("click", function () {
-        copy("discord");
-    });
-    document.getElementById("slack").addEventListener("click", function () {
-        copy("slack");
+            await navigator.clipboard.writeText(text);
+
+            const copyText = document.getElementById(id + "CopyText");
+            if (!copyText) return;
+            copyText.innerText = "Copied!";
+            
+            setTimeout(() => {
+                copyText.innerText = "Click to copy";
+            }, 3000);
+        });
     });
 </script>
