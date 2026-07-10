@@ -68,7 +68,7 @@ import Layout from "../layouts/Layout.astro";
             const copyText = document.getElementById(id + "CopyText");
             if (!copyText) return;
             copyText.innerText = "Copied!";
-            
+
             setTimeout(() => {
                 copyText.innerText = "Click to copy";
             }, 3000);

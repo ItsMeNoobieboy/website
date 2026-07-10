@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@view-transition {
+    navigation: auto;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
